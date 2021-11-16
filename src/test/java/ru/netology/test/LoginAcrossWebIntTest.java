@@ -18,61 +18,61 @@ public class LoginAcrossWebIntTest {
     }
 
     @Test
-    void ShouldLoginActiveUser() {
+    void shouldLoginActiveUser() {
         DataGenerator.UserInfo activeUser = createActiveUser();
         $("[name='login']").setValue(activeUser.getLogin());
         $("[name='password']").setValue(activeUser.getPassword());
         $("[data-test-id='action-login']").click();
-        $(Selectors.withText("Личный кабинет")).shouldBe(visible);
+        $(Selectors.withText("Р›РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚")).shouldBe(visible);
 
     }
     @Test
-    void ShouldNotLoginActiveUserWithWrongLogin() {
+    void shouldNotLoginActiveUserWithWrongLogin() {
         DataGenerator.UserInfo activeUser = createActiveUser();
         $("[name='login']").setValue(getLogin("en"));
         $("[name='password']").setValue(activeUser.getPassword());
         $("[data-test-id='action-login']").click();
-        $("[class='notification__content']").shouldHave(Condition.text("Неверно указан логин или пароль"));
+        $("[class='notification__content']").shouldHave(Condition.text("РќРµРІРµСЂРЅРѕ СѓРєР°Р·Р°РЅ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ"));
 
    }
     @Test
-    void ShouldNotLoginActiveUserWithWrongPassword() {
+    void shouldNotLoginActiveUserWithWrongPassword() {
         DataGenerator.UserInfo activeUser = createActiveUser();
         $("[name='login']").setValue(activeUser.getLogin());
         $("[name='password']").setValue(getPassword("en"));
         $("[data-test-id='action-login']").click();
-        $("[class='notification__content']").shouldHave(Condition.text("Неверно указан логин или пароль"));
+        $("[class='notification__content']").shouldHave(Condition.text("РќРµРІРµСЂРЅРѕ СѓРєР°Р·Р°РЅ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ"));
 
     }
     @Test
-    void ShouldNotLoginBlockedUser() {
+    void shouldNotLoginBlockedUser() {
         DataGenerator.UserInfo blockedUser = createBlockedUser();
         $("[name='login']").setValue(blockedUser.getLogin());
         $("[name='password']").setValue(blockedUser.getPassword());
         $("[data-test-id='action-login']").click();
-        $("[class='notification__content']").shouldHave(Condition.text("Пользователь заблокирован"));
+        $("[class='notification__content']").shouldHave(Condition.text("РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р·Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ"));
     }
     @Test
-    void ShouldNotLoginBlockedUserWithWrongLogin() {
+    void shouldNotLoginBlockedUserWithWrongLogin() {
         DataGenerator.UserInfo blockedUser = createBlockedUser();
         $("[name='login']").setValue(getLogin("en"));
         $("[name='password']").setValue(blockedUser.getPassword());
         $("[data-test-id='action-login']").click();
-        $("[class='notification__content']").shouldHave(Condition.text("Неверно указан логин или пароль"));
+        $("[class='notification__content']").shouldHave(Condition.text("РќРµРІРµСЂРЅРѕ СѓРєР°Р·Р°РЅ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ"));
     }
     @Test
-    void ShouldNotLoginBlockedUserWithWrongPassword() {
+    void shouldNotLoginBlockedUserWithWrongPassword() {
         DataGenerator.UserInfo blockedUser = createBlockedUser();
         $("[name='login']").setValue(blockedUser.getLogin());
         $("[name='password']").setValue(getPassword("en"));
         $("[data-test-id='action-login']").click();
-        $("[class='notification__content']").shouldHave(Condition.text("Неверно указан логин или пароль"));
+        $("[class='notification__content']").shouldHave(Condition.text("РќРµРІРµСЂРЅРѕ СѓРєР°Р·Р°РЅ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ"));
     }
     @Test
-    void ShouldNotLoginUnregistered() {
+    void shouldNotLoginUnregistered() {
         $("[name='login']").setValue(getLogin("en"));
         $("[name='password']").setValue(getPassword("en"));
         $("[data-test-id='action-login']").click();
-        $("[class='notification__content']").shouldHave(Condition.text("Неверно указан логин или пароль"));
+        $("[class='notification__content']").shouldHave(Condition.text("РќРµРІРµСЂРЅРѕ СѓРєР°Р·Р°РЅ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ"));
     }
 }
